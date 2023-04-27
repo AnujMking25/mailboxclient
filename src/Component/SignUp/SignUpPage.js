@@ -55,7 +55,9 @@ const SignUpPage = () => {
     <div className={classes.maindiv}>
     <div className={classes.firstdiv}>
           <Form onSubmit={onSubmitHandler}>
-          <Form.Label className='mb-3' > SignUp</Form.Label>
+      
+            <Form.Text className='mb-3'>SignUp</Form.Text>
+            
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control type="email" placeholder='Enter email'  ref={InputEmail}/>
         <Form.Text className="text-muted">
@@ -71,10 +73,9 @@ const SignUpPage = () => {
       </Form.Group>
       
       <Button variant="primary" type="submit" >
-        Submit
+        Sign Up
       </Button>
-    </Form>
-    
+    </Form> 
     </div>
     
     <Button className='mt-2 w-100' variant="primary" size="lg" style={{border:'1px solid black'}}>
