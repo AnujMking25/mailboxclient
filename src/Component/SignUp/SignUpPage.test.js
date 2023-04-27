@@ -2,8 +2,9 @@ import React from "react";
 import { screen,render } from "@testing-library/react";
 import SignUpPage from "./SignUpPage";
 
+
 describe('Sign Up page Testing',()=>{
-   
+
     test('SignUp Testing', () => { 
         //Arrange
         render(<SignUpPage/>)

@@ -3,11 +3,19 @@
     margin: auto;
     margin-top: 5rem;
     text-align: center;
-    width: 30%;
+    max-width: 25rem;
+    min-width: 12rem;
     padding: 2rem;
 }
 .firstdiv{
     border:1px solid black ;
     padding: 1rem;
     border-radius: 12px;
+}
+.firstdiv h2{
+    margin: 1rem 0rem 2rem 0rem;
+}
+.firstdiv p{
+    color: blue;
+    text-decoration: underline;
 }

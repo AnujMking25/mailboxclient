@@ -1,21 +1,26 @@
 import React, { useRef, useState } from "react";
-import {Button} from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import {Button,Form} from "react-bootstrap";
+
+import {useNavigate } from "react-router-dom";
 import classes from "./SignUpPage.module.css";
 const SignUpPage = () => {
   const InputEmail = useRef();
   const InputPassword = useRef();
   const InputCPassword = useRef();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-const Navaigate=useNavigate()
-  async function onSubmitHandler(e) {
+  
+  const Navaigate=useNavigate()
+  async function onSubmitHandler(e){
     e.preventDefault();
     const Email = InputEmail.current.value;
     const Password = InputPassword.current.value;
     const CPassword = InputCPassword.current.value;
+    if(Email.trim().length === 0 || Password.trim().length===0){
+      alert("Please fill the form")
+      return
+    }
     if (Email.trim().length < 12) {
-      alert("This is not vaild Email");
+      alert("This is not valid Email");
       return;
     }
     if (Password.trim().length < 8) {
@@ -48,6 +53,7 @@ const Navaigate=useNavigate()
           if(isLoggedIn){
             localStorage.setItem("email", response.email);
             localStorage.setItem("token", response.idToken);
+            alert('Login Successfull')
           Navaigate('/mailbox')
           }
           else{
@@ -62,7 +68,7 @@ const Navaigate=useNavigate()
     <div className={classes.maindiv}>
       <div className={classes.firstdiv}>
         <Form onSubmit={onSubmitHandler}>
-          <Form.Text className="mb-3"> {isLoggedIn? 'LogIn' : 'SignUp'}</Form.Text>
+          <h2> {isLoggedIn? 'LogIn' : 'SignUp'}</h2>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
@@ -90,10 +96,10 @@ const Navaigate=useNavigate()
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button className="w-100" variant="primary" type="submit">
           {isLoggedIn? 'Log In' : 'Sign Up'}
           </Button>
-          {isLoggedIn ? <Link to='#'>forget password</Link>:''}
+          {isLoggedIn ? <p>forget password</p>:''}
         </Form>
       </div>
 
