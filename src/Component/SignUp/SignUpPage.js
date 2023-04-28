@@ -1,15 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState ,useEffect} from "react";
 import {Button,Form} from "react-bootstrap";
-
 import {useNavigate } from "react-router-dom";
 import classes from "./SignUpPage.module.css";
+import { AuthSliceAction } from "../../Store/Authslice";
+import { useDispatch, useSelector } from "react-redux";
 const SignUpPage = () => {
   const InputEmail = useRef();
   const InputPassword = useRef();
   const InputCPassword = useRef();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  const Navaigate=useNavigate()
+  const dispatch=useDispatch();
+  const Navigate=useNavigate()
+ const isAuth= useSelector(state=>state.auth.isAuth)
+  useEffect(()=> {if(isAuth){ Navigate('/Home')}})
+
   async function onSubmitHandler(e){
     e.preventDefault();
     const Email = InputEmail.current.value;
@@ -51,17 +55,19 @@ const SignUpPage = () => {
         if (signOrLogin.ok) {
           const response = await signOrLogin.json();
           if(isLoggedIn){
-            localStorage.setItem("email", response.email);
-            localStorage.setItem("token", response.idToken);
-            alert('Login Successfull')
-          Navaigate('/mailbox')
+            dispatch(AuthSliceAction.login({email:response.email,token:response.idToken}))
+          Navigate('/Home')
           }
           else{
             alert("SignUp Successfull")
+            setIsLoggedIn(true)
           }
           
-        }
-      } catch (error) {}
+        }else{ throw new Error('Something went wrong')}
+       
+      } catch (error) {
+        alert(error)
+      }
     }
   }
   return (
@@ -99,7 +105,7 @@ const SignUpPage = () => {
           <Button className="w-100" variant="primary" type="submit">
           {isLoggedIn? 'Log In' : 'Sign Up'}
           </Button>
-          {isLoggedIn ? <p>forget password</p>:''}
+          {isLoggedIn ? <Button variant="link" onClick={()=>Navigate('/forgatePassword')}>forget password</Button>:''}
         </Form>
       </div>
 

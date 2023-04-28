@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { Button } from 'react-bootstrap';
+import { Button, Container,Row,Col } from 'react-bootstrap';
 
-const MailBox = () => {
-  const [editorState,seteditorState]=useState(EditorState.createEmpty())
+const Compose = () => {
+  const [editorState,seteditorState]=useState(EditorState.createEmpty(''))
   const[recipientEmail,setRecipientEmail]=useState("")
 const email=localStorage.getItem('email')
 function onRecipientEmailHandler(e){
@@ -24,14 +24,14 @@ setRecipientEmail(e.target.value);
     try {
       //*** This data for sender************************
       const sendDataFrom = await fetch(
-        `https://reactmailbox-40456-default-rtdb.firebaseio.com/${senderMailUrl}.json`,
+        `https://reactmailbox-40456-default-rtdb.firebaseio.com/${senderMailUrl}/send.json`,
         {
           method: "POST",
           body: JSON.stringify({
             from: email,
             to: recipientEmail,
             message: messageBody,
-            read: true,
+          
           }),
           headers: {
             "Content-Type": "application/json",
@@ -40,14 +40,14 @@ setRecipientEmail(e.target.value);
       ); 
 
       // this data for reciver
-      await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${recieverMailUrl}.json`,
+      await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${recieverMailUrl}/inbox.json`,
       {
         method: "POST",
         body: JSON.stringify({
           from: email,
           to: recipientEmail,
           message: messageBody,
-          read: false,
+        
         }),
         headers: {
           "Content-Type": "application/json",
@@ -68,10 +68,25 @@ setRecipientEmail(e.target.value);
   }
   return (
     <>
-     <div>Welcome Mail Box</div>
-     <label>To</label>
-     <input  type='email' onChange={onRecipientEmailHandler}/>
-     <div style={{border:'1px solid black'}}>
+     <Row className='mt-3'>
+         <Col md={{span:4,offset:4}}>
+         <h2>Compose mail</h2>
+         </Col> 
+      </Row>
+     <Container className='mt-4'>
+        <Row>
+          <Col sm={1}><h5>From</h5></Col>
+          <Col sm={3}>{email}</Col>
+        </Row>
+        <hr/>
+        <Row>
+          <Col sm={1}><h5> To</h5></Col>
+          <Col sm={4}><input  type='email' onChange={onRecipientEmailHandler}/></Col>
+          <Col sm={{ span: 3, offset: 4} }>  <Button onClick={onSubmitHandler}>send</Button> </Col>
+        </Row>
+        <hr/>
+     
+    
      <Editor
   editorState={editorState}
   toolbarClassName="toolbarClassName"
@@ -79,11 +94,12 @@ setRecipientEmail(e.target.value);
   editorClassName="editorClassName"
   onEditorStateChange={onEditorStateChangeHandler}
 />
-     </div>
-  <Button onClick={onSubmitHandler}>send</Button>  
+     
+
+  </Container> 
     </>
    
   )
 }
 
-export default MailBox
+export default Compose
