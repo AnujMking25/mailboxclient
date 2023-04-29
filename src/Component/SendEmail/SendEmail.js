@@ -8,15 +8,16 @@ const SendEmail = () => {
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','');
     const [IsSendItem,setSendItem]=useState();
     const ShowitemData=useSelector(state=>state.mailboxitem.SendboxItems)
+    const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/send`
    useEffect(()=>{
 setSendItem(<ul>{
-        ShowitemData.map((item)=><ItemsList key={item.id} id={item.id} from={item.to} message={item.message}/>)
+        ShowitemData.map((item)=><ItemsList key={item.id} url={url} id={item.id} from={item.to} message={item.message}/>)
     }</ul>)
    },[ShowitemData]) 
 useEffect(()=>{
     async function GetData(){
         try {
-            const GetSendData=await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/send.json`)
+            const GetSendData=await fetch(`${url}.json`)
             if(GetSendData.ok){
                 const response=await GetSendData.json()
                 let SendDataArr=[];

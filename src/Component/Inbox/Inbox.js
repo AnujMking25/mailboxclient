@@ -9,17 +9,17 @@ const Inbox = () => {
     const inboxitemsData=useSelector(state=>state.mailboxitem.inboxItems)
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','')
     const[inboxMailItem,setinboxMailitem]=useState('')
-
+    const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
     useEffect(()=>{
         setinboxMailitem(
-            <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
+            <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} url={url} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
         )
     },[inboxitemsData])
  
     useEffect( ()=>{
         async function GetData(){
             try {
-                const getInboxData=await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/inbox.json`)
+                const getInboxData=await fetch(`${url}.json`)
         
                 if(getInboxData.ok){
                     const response=await getInboxData.json()

@@ -12,12 +12,14 @@ const MailItemsSlice=createSlice({
         inboxItems(state,action){
             state.inboxItems=action.payload.itemArr;
             state.inboxCounter=action.payload.counter;
-            console.log("Check counter...",state.inboxCounter);
-            
         },
         sendboxItems(state,action){
             state.SendboxItems=action.payload
             
+        },
+        updateCounter(state){
+            state.inboxCounter=state.inboxCounter-1;
+            console.log("current Counter",state.inboxCounter);
         }
     }
 })

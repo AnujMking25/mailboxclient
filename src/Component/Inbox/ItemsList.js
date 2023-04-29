@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { Row,Col} from 'react-bootstrap'
 import MessagePage from '../HomePage/MessagePage'
+import { useDispatch } from 'react-redux'
+import { MailItemsSliceAction } from '../../Store/MailItemsSlice'
 const ItemsList = (props) => {
-  const read=props.read
-    const itsYouremail=localStorage.getItem('email').replace("@",'').replace(".",'')
+  const[read,setread]=useState(props.read)
    const [show,setshow]=useState(false);
+   const dispatch=useDispatch();
+   const url=`${props.url}/${props.id}.json`
    async function onReadUpdate(){
-      const update=await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/inbox/${props.id}.json`,{
+    
+      const update=await fetch(url,{
         method:'PATCH',
         body:JSON.stringify({
           read:false
@@ -18,6 +22,8 @@ const ItemsList = (props) => {
       })
       if(update.ok){
         console.log("update success");
+        setread(false)
+        dispatch(MailItemsSliceAction.updateCounter())
       }
    } 
    function onShowMessagePage(){
@@ -36,8 +42,9 @@ const ItemsList = (props) => {
         <Col sm={1} >{read ? '📩': '✔'}</Col>
           <Col sm={3}> <b>{props.from}</b></Col>
           <Col sm={8}>{props.message}</Col>
+          
         </Row>}
-        {show && <MessagePage  onHide={onHideMessagePage} email={props.from} message={props.message}/>}
+        {show && <MessagePage  onHide={onHideMessagePage} url={url} email={props.from} message={props.message}/>}
         <hr/>
    </li>
   )
