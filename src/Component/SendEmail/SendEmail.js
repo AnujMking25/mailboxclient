@@ -9,9 +9,13 @@ const SendEmail = () => {
     const [IsSendItem,setSendItem]=useState();
     const ShowitemData=useSelector(state=>state.mailboxitem.SendboxItems)
     const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/send`
+
+    function onDeleteSendBoxMail(id){
+        dispatch(MailItemsSliceAction.deleteSendBoxmail(id))
+    }
    useEffect(()=>{
 setSendItem(<ul>{
-        ShowitemData.map((item)=><ItemsList key={item.id} url={url} id={item.id} from={item.to} message={item.message}/>)
+        ShowitemData.map((item)=><ItemsList key={item.id} onDeleteMail={onDeleteSendBoxMail} url={url} id={item.id} from={item.to} message={item.message}/>)
     }</ul>)
    },[ShowitemData]) 
 useEffect(()=>{

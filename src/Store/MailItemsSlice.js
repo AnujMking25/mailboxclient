@@ -20,6 +20,16 @@ const MailItemsSlice=createSlice({
         updateCounter(state){
             state.inboxCounter=state.inboxCounter-1;
             console.log("current Counter",state.inboxCounter);
+        },
+        deleteinboxmail(state,action){
+            state.inboxItems=state.inboxItems.filter(item=>item.id !== action.payload)
+            console.log("delete working inbox",action.payload);
+            
+        },
+        deleteSendBoxmail(state,action){
+            state.SendboxItems=state.SendboxItems.filter(item=>item.id !== action.payload)
+            console.log("delete working sendbox",action.payload);
+            
         }
     }
 })

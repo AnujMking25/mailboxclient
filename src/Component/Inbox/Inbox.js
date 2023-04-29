@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MailItemsSliceAction } from '../../Store/MailItemsSlice';
 import ItemsList from './ItemsList';
 
-
 const Inbox = () => {
     const dispatch=useDispatch()
     const inboxitemsData=useSelector(state=>state.mailboxitem.inboxItems)
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','')
     const[inboxMailItem,setinboxMailitem]=useState('')
     const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
+    function onDeleteInboxMail(id){
+        dispatch(MailItemsSliceAction.deleteinboxmail(id))
+    }
     useEffect(()=>{
         setinboxMailitem(
-            <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} url={url} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
+            <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} onDeleteMail={onDeleteInboxMail} url={url} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
         )
     },[inboxitemsData])
  

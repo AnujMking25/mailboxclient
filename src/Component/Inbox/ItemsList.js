@@ -34,7 +34,6 @@ const ItemsList = (props) => {
     }
     function onHideMessagePage(){
       setshow(false)
-      console.log('Hii i am working');
     }
   return (
     <li id={props.id} style={{listStyle:'none'}} >
@@ -44,7 +43,7 @@ const ItemsList = (props) => {
           <Col sm={8}>{props.message}</Col>
           
         </Row>}
-        {show && <MessagePage  onHide={onHideMessagePage} url={url} email={props.from} message={props.message}/>}
+        {show && <MessagePage  onHide={onHideMessagePage} onDeleteMail={props.onDeleteMail} id={props.id} url={url} email={props.from} message={props.message}/>}
         <hr/>
    </li>
   )

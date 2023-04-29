@@ -1,9 +1,9 @@
 import React from 'react'
 import { Row,Col, Container, Button } from 'react-bootstrap';
 const MessagePage = (props) => {
+
 function onHide(){
   props.onHide()
- 
 }
 async function onDeleteHandler(){
   const deleteMail=await fetch(props.url,{
@@ -11,7 +11,9 @@ async function onDeleteHandler(){
   })
   if(deleteMail.ok){
     props.onHide()
+    props.onDeleteMail(props.id)
     alert("Mail Deleted")
+
   }
 }
   return (
