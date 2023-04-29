@@ -47,6 +47,7 @@ setRecipientEmail(e.target.value);
           from: email,
           to: recipientEmail,
           message: messageBody,
+          read:true
         
         }),
         headers: {
@@ -56,8 +57,7 @@ setRecipientEmail(e.target.value);
       )
       if (sendDataFrom.ok) {
         alert('Email send successfully')
-        const response =await sendDataFrom.json();
-       console.log(response);
+        // const response =await sendDataFrom.json();
       } else {
         const response =await sendDataFrom.json();
         throw response.error;

@@ -12,7 +12,7 @@ const Inbox = () => {
 
     useEffect(()=>{
         setinboxMailitem(
-            <ul>{inboxitemsData.map((item,index)=><ItemsList key={index} from={item.from} message={item.message}/>)}</ul>
+            <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
         )
     },[inboxitemsData])
  
@@ -24,11 +24,14 @@ const Inbox = () => {
                 if(getInboxData.ok){
                     const response=await getInboxData.json()
                     let itemArr=[]
+                    let counter=0;
                     for (const key in response) {
                             const element = response[key];
-                            itemArr.push(element)
+                            if(response[key].read===true){counter++}
+                            itemArr.push({...element,id:key})
                     }
-                    dispatch(MailItemsSliceAction.inboxItems(itemArr))
+                    
+                    dispatch(MailItemsSliceAction.inboxItems({itemArr,counter}))
                      
                 }
                 else{throw new Error('Something went wrong')} 

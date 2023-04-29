@@ -10,7 +10,7 @@ const SendEmail = () => {
     const ShowitemData=useSelector(state=>state.mailboxitem.SendboxItems)
    useEffect(()=>{
 setSendItem(<ul>{
-        ShowitemData.map((item,index)=><ItemsList key={index} from={item.to} message={item.message}/>)
+        ShowitemData.map((item)=><ItemsList key={item.id} id={item.id} from={item.to} message={item.message}/>)
     }</ul>)
    },[ShowitemData]) 
 useEffect(()=>{
@@ -21,7 +21,7 @@ useEffect(()=>{
                 const response=await GetSendData.json()
                 let SendDataArr=[];
                 for(const key in response){
-                    SendDataArr.push(response[key])
+                    SendDataArr.push({...response[key],id:key})
                 }
                     dispatch(MailItemsSliceAction.sendboxItems(SendDataArr))
             }
