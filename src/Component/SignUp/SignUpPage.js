@@ -63,7 +63,9 @@ const SignUpPage = () => {
             setIsLoggedIn(true)
           }
           
-        }else{ throw new Error('Something went wrong')}
+        }else{
+           throw new Error('Something went wrong')
+          }
        
       } catch (error) {
         alert(error)
@@ -116,7 +118,7 @@ const SignUpPage = () => {
         style={{ border: "1px solid black" }}
         onClick={()=>setIsLoggedIn(!isLoggedIn)}
       >
-        Have an account?Login
+       {isLoggedIn ? 'Create new account?SignUp':'Have an account?Login'} 
       </Button>
     </div>
   );

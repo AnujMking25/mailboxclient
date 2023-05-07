@@ -6,8 +6,9 @@ import SendEmail from '../SendEmail/SendEmail'
 import { useDispatch, useSelector } from 'react-redux'
 import { AuthSliceAction } from '../../Store/Authslice'
 import { useNavigate } from 'react-router-dom'
+import { MailItemsSliceAction } from '../../Store/MailItemsSlice'
 function Home() {
-    const [isInbox,setIsInbox]=useState(false)
+    const [isInbox,setIsInbox]=useState(true)
     const[isCompose,setIsCompose]=useState(false)
     const[isSend,setIsSend]=useState(false);
 
@@ -31,6 +32,7 @@ function Home() {
     }
     function onLogoutHandler(){
       dispatch(AuthSliceAction.logout())
+      dispatch(MailItemsSliceAction.LoggoutDataDelete());
       Navigate('/')
     }
   return (

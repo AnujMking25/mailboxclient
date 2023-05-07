@@ -30,6 +30,10 @@ const MailItemsSlice=createSlice({
             state.SendboxItems=state.SendboxItems.filter(item=>item.id !== action.payload)
             console.log("delete working sendbox",action.payload);
             
+        },
+        LoggoutDataDelete(state){
+            state.inboxItems=[];
+            state.SendboxItems=[];
         }
     }
 })

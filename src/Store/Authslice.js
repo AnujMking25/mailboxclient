@@ -19,6 +19,7 @@ const AuthSlice=createSlice({
             state.isAuth=false
             localStorage.removeItem('email')
             localStorage.removeItem('token')
+            
         }
     }
 })

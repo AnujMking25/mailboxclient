@@ -1,19 +1,19 @@
 import { Routes, Route} from 'react-router-dom';
 import './App.css';
 import SignUpPage from './Component/SignUp/SignUpPage';
-import Home from './Component/HomePage/Home';
+import {lazy,Suspense} from 'react';
 import { useSelector } from 'react-redux';
-import ForgetPassword from './Component/ForgetPassword/ForgetPassword';
-// import MessagePage from './Component/HomePage/MessagePage';
+const ForgetPassword=lazy(()=>import('./Component/ForgetPassword/ForgetPassword'));
+const Home=lazy(()=>import('./Component/HomePage/Home'));
 function App() {
   const isAuth=useSelector(state=>state.auth.isAuth);
 
   return (
-    <div>
+    <div className='maindiv'>
       <Routes>
         <Route exact path='/' element={<SignUpPage/>} />
-       {isAuth && <Route path='/Home' element={<Home/>}/>} 
-       <Route path='/forgatePassword' element={<ForgetPassword/>}/>
+       {isAuth && <Route path='/Home' element={<Suspense><Home/></Suspense> }/>} 
+       <Route path='/forgatePassword' element={<Suspense><ForgetPassword/></Suspense> }/>
       </Routes>
       
     </div>

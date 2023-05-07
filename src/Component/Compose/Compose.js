@@ -73,7 +73,7 @@ setRecipientEmail(e.target.value);
          <h2>Compose mail</h2>
          </Col> 
       </Row>
-     <Container className='mt-4'>
+     <Container className='mt-4' style={{borderLeft:'1px solid black',borderBottom:'1px solid black',minHeight:'70vh'}}>
         <Row>
           <Col sm={1}><h5>From</h5></Col>
           <Col sm={3}>{email}</Col>
