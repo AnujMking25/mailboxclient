@@ -35,11 +35,12 @@ const ItemsList = (props) => {
     function onHideMessagePage(){
       setshow(false)
     }
+    // overflowY:'hidden',  style={{maxHeight:'30px'}} style={{justifyContent:'space-around'}}
   return (
     <li id={props.id} style={{listStyle:'none'}} >
-      {!show && <Row onClick={onShowMessagePage} style={{maxHeight:'30px',overflowY:'hidden'}}>
-        <Col sm={1} >{read ? '📩': '✔'}</Col>
-          <Col sm={3}> <b>{props.from}</b></Col>
+      {!show && <Row onClick={onShowMessagePage} >
+        <Col sm={1}>{read ? '📩': '✔'}</Col>
+          <Col style={{fontWeight:"bold"}}>{props.from}</Col>
           <Col sm={8}>{props.message}</Col>
           
         </Row>}
