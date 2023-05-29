@@ -8,7 +8,7 @@ const Inbox = () => {
     const inboxitemsData=useSelector(state=>state.mailboxitem.inboxItems)
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','')
     const[inboxMailItem,setinboxMailitem]=useState('')
-    const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
+    const url=`https://mail-box-94e45-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
     function onDeleteInboxMail(id){
         dispatch(MailItemsSliceAction.deleteinboxmail(id))
     }
@@ -16,13 +16,13 @@ const Inbox = () => {
         setinboxMailitem(
             <ul>{inboxitemsData.map((item)=><ItemsList key={item.id} onDeleteMail={onDeleteInboxMail} url={url} id={item.id} read={item.read} from={item.from} message={item.message}/>)}</ul>
         )
-    },[inboxitemsData])
+    },[inboxitemsData,url])
  
     useEffect( ()=>{
 
         const interval=setInterval(() => {
             async function GetData(){
-                console.log("I am calling every 2 sec");
+                // console.log("I am calling every 2 sec");
                 try {
                     const getInboxData=await fetch(`${url}.json`)
             
@@ -49,7 +49,7 @@ const Inbox = () => {
        
         return ()=>clearInterval(interval);
        
-},[itsYouremail,dispatch])
+},[itsYouremail,dispatch,url])
 
   return (
    

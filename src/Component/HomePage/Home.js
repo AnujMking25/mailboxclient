@@ -46,7 +46,7 @@ function Home() {
     <>
     <Navbar bg="info">
         <Container>
-          <Navbar.Brand href="#home">Mail Box</Navbar.Brand>
+          <Navbar.Brand href="#home">MB MailBox</Navbar.Brand>
           <Button className="me-2" variant="outline-danger" onClick={onLogoutHandler}>Logout</Button>
         </Container>
       </Navbar>

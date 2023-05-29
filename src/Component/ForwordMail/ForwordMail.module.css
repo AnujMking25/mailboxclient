@@ -3,8 +3,27 @@
     width: 100%;
     position: fixed;
     z-index: 2;
+    padding: 5rem;
     background-color: rgba(0,0,0, 0.60);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.maindiv form{
+    background-color:white;
+    border-radius:12px;
+    padding:1rem;
+}
+.maindiv button {
+    float: right;
+    margin-left: 5px;
+}
+@media(max-width:583px){
+   .maindiv{
+padding: 2rem;
+   }
+    .maindiv h4,.maindiv h5{
+    font-size: 18px;
+    }
+
 }

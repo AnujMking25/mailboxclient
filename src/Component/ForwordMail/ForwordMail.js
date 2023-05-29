@@ -20,18 +20,18 @@ const ForwordMailData = (props) => {
     function onForwordMessage(e){
         e.preventDefault();
         const recipientEmail=InputrecipientEmail.current.value;
-        console.log(recipientEmail);
+        // console.log(recipientEmail);
         const message=props.message;
         onSendRequest(message,recipientEmail,email) 
     }
 // *********************** Custome Hook (end) ********************************
   return (
     <div className={classess.maindiv}>
-        <Container style={{backgroundColor:'white',width:'50%',borderRadius:'12px',padding:'1rem'}}>
+        <Container >
             <form onSubmit={onForwordMessage}>
             <Row >
-                <Col sm={11}><h4>From: {email}</h4></Col>
-                <Col sm={1}><Button variant='danger' onClick={onHide}>X</Button></Col>
+                <Col><h4>From: {email}</h4></Col>
+                <Col><Button variant='danger' onClick={onHide}>X</Button></Col>
             </Row>
             <Row>
                 <Col sm={1}><h4>To:</h4></Col>
@@ -42,11 +42,10 @@ const ForwordMailData = (props) => {
                 <h5>message:</h5><p>{props.message}</p>
             </Row>
             <Row>
-                <Col sm={{offset:8}} ><Button onClick={onHide}>cancle</Button></Col>
-                <Col ><Button type="submit">forword</Button></Col>
+                <Col ><Button onClick={onHide}>cancle</Button>
+                <Button type="submit">forword</Button></Col>
             </Row>
             </form>
-           
         </Container>
     </div>
   )

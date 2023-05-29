@@ -1,5 +1,5 @@
 import React, { useRef, useState ,useEffect} from "react";
-import {Button,Form} from "react-bootstrap";
+import {Button,Form,Navbar,Container} from "react-bootstrap";
 import {useNavigate } from "react-router-dom";
 import classes from "./SignUpPage.module.css";
 import { AuthSliceAction } from "../../Store/Authslice";
@@ -36,9 +36,9 @@ const SignUpPage = () => {
       return;
     } else {
       let url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBCaC8p6QYMaENP8262krDKP5sik_2ncwA";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8";
       if(isLoggedIn){
-        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBCaC8p6QYMaENP8262krDKP5sik_2ncwA'
+        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8'
       }
         try {
         const signOrLogin = await fetch(url, {
@@ -73,6 +73,12 @@ const SignUpPage = () => {
     }
   }
   return (
+    <>
+    <Navbar bg="info">
+    <Container>
+      <Navbar.Brand>MB MailBox</Navbar.Brand>
+      </Container>
+  </Navbar>
     <div className={classes.maindiv}>
       <div className={classes.firstdiv}>
         <Form onSubmit={onSubmitHandler}>
@@ -121,6 +127,7 @@ const SignUpPage = () => {
        {isLoggedIn ? 'Create new account?SignUp':'Have an account?Login'} 
       </Button>
     </div>
+    </>
   );
 };
 

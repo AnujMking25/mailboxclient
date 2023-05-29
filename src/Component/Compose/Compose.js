@@ -23,9 +23,17 @@ setRecipientEmail(e.target.value);
 
   async function onSubmitHandler(){
     const messageBody = editorState.getCurrentContent().getPlainText();
-    const senderMailUrl =email.replace("@",'').replace(".",'');
-    const recieverMailUrl = recipientEmail.replace("@", '').replace(".", '');
-    await onSendRequest(messageBody,recieverMailUrl,senderMailUrl);
+
+    if(!recipientEmail.includes('@gmail.com') || recipientEmail.trim().length <14){
+      alert('Email is not Valid!!!') 
+      return;
+     }
+     if(messageBody===""){
+      alert("Please write message...");
+      return;
+     }
+   
+    await onSendRequest(messageBody,recipientEmail,email);
     props.onInbox();
   }
 

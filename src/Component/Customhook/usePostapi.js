@@ -10,7 +10,7 @@ const usePostapi = () => {
     try {
       //*** This data for sender************************
       const sendDataFrom = await fetch(
-        `https://reactmailbox-40456-default-rtdb.firebaseio.com/${senderMailUrl}/send.json`,
+        `https://mail-box-94e45-default-rtdb.firebaseio.com/${senderMailUrl}/send.json`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -26,7 +26,7 @@ const usePostapi = () => {
       ); 
 
       // this data for reciver
-      await fetch(`https://reactmailbox-40456-default-rtdb.firebaseio.com/${recieverMailUrl}/inbox.json`,
+      await fetch(`https://mail-box-94e45-default-rtdb.firebaseio.com/${recieverMailUrl}/inbox.json`,
       {
         method: "POST",
         body: JSON.stringify({

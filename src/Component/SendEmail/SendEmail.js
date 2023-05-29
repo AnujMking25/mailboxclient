@@ -8,7 +8,7 @@ const SendEmail = () => {
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','');
     const [IsSendItem,setSendItem]=useState();
     const ShowitemData=useSelector(state=>state.mailboxitem.SendboxItems)
-    const url=`https://reactmailbox-40456-default-rtdb.firebaseio.com/${itsYouremail}/send`
+    const url=`https://mail-box-94e45-default-rtdb.firebaseio.com/${itsYouremail}/send`
 
     function onDeleteSendBoxMail(id){
         dispatch(MailItemsSliceAction.deleteSendBoxmail(id))
@@ -17,7 +17,7 @@ const SendEmail = () => {
 setSendItem(<ul>{
         ShowitemData.map((item)=><ItemsList key={item.id} onDeleteMail={onDeleteSendBoxMail} url={url} id={item.id} from={item.to} message={item.message}/>)
     }</ul>)
-   },[ShowitemData]) 
+   },[ShowitemData,url]) 
 useEffect(()=>{
     async function GetData(){
         try {
@@ -35,7 +35,7 @@ useEffect(()=>{
         }
     }
     GetData()
-},[itsYouremail,dispatch])
+},[itsYouremail,dispatch,url])
 
   return (
     <Container className='mt-3'>
