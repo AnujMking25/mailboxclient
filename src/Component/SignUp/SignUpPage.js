@@ -18,7 +18,7 @@ const SignUpPage = () => {
     e.preventDefault();
     const Email = InputEmail.current.value;
     const Password = InputPassword.current.value;
-    const CPassword = InputCPassword.current.value;
+   
     if(Email.trim().length === 0 || Password.trim().length===0){
       alert("Please fill the form")
       return
@@ -27,18 +27,23 @@ const SignUpPage = () => {
       alert("This is not valid Email");
       return;
     }
+    if(!isLoggedIn){
+    const CPassword = InputCPassword.current.value;
     if (Password.trim().length < 8) {
       alert("Make Strong Password");
       return;
     }
-    if (Password !== CPassword) {
+    if (Password !== CPassword && !isLoggedIn) {
       alert("Password Missmatch");
       return;
-    } else {
-      let url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8";
+    } 
+  }
+    
+      let url;   
       if(isLoggedIn){
         url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8'
+      }else{
+        url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8";
       }
         try {
         const signOrLogin = await fetch(url, {
@@ -66,11 +71,9 @@ const SignUpPage = () => {
         }else{
            throw new Error('Something went wrong')
           }
-       
       } catch (error) {
         alert(error)
       }
-    }
   }
   return (
     <>
@@ -90,9 +93,9 @@ const SignUpPage = () => {
               placeholder="Enter email"
               ref={InputEmail}
             />
-            <Form.Text className="text-muted">
+            {!isLoggedIn && <Form.Text className="text-muted">
               We'll never share your email with anyone else.
-            </Form.Text>
+            </Form.Text>}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -102,13 +105,13 @@ const SignUpPage = () => {
               ref={InputPassword}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          {!isLoggedIn && <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
               type="password"
               placeholder="Confirm Password"
               ref={InputCPassword}
             />
-          </Form.Group>
+          </Form.Group>}
 
           <Button className="w-100" variant="primary" type="submit">
           {isLoggedIn? 'Log In' : 'Sign Up'}

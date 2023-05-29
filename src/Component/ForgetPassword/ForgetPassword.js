@@ -15,7 +15,7 @@ e.preventDefault()
       return
     }
    try {
-    const response=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBCaC8p6QYMaENP8262krDKP5sik_2ncwA',{
+    const response=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8',{
       method:'POST',
         body:JSON.stringify({
             requestType:"PASSWORD_RESET",

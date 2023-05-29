@@ -29,7 +29,7 @@ function onForwordHide(){
       <Row >
         <Col sm={1}><Button size='sm' onClick={onHide}>Back</Button></Col>
         <Col sm={1}><Button size='sm' onClick={onForwordHandler} style={{fontSize:'20px',color:'black',backgroundColor:'white',border:'none'}}>⪼</Button></Col>
-        <Col sm={1}><Button size='sm' onClick={onDeleteHandler}>Delete</Button></Col>
+        <Col sm={1} ><Button size='sm' onClick={onDeleteHandler}>Delete</Button></Col>
       </Row>
       <Row>
         <Col style={{fontSize:'20px',fontWeight:'bold',textAlign:'justify'}}>To:{props.email}</Col>
