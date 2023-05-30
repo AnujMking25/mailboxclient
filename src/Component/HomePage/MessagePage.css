@@ -1,0 +1,27 @@
+#messagediv{
+    padding: 1.5rem;
+    border:1px solid black;
+    min-height:13rem;
+    border-radius:12px;
+    
+}
+#Toemail{
+    font-size:18px;
+    font-weight:bold;  
+}
+#Forwordbtn{
+   font-size:20px;
+   color:black;
+   background-color:white;
+   border:none;
+}
+#message{
+    padding: 3px;
+    text-align: justify;
+}
+@media(max-width:390px) {
+    #Toemail{
+        font-size:14px;
+    font-weight:bold;
+    }
+}

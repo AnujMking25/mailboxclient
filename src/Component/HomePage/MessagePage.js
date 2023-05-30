@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Row,Col, Container, Button } from 'react-bootstrap';
 import ForwordMail from '../ForwordMail/ForwordMail';
+import './MessagePage.css'
 const MessagePage = (props) => {
  const [ShowForword,setShowForword]=useState(false)
 function onHide(){
@@ -25,17 +26,17 @@ function onForwordHide(){
 }
   return (
     <>
-    <Container className='p-4' style={{border:'1px solid black', minHeight:'13rem',borderRadius:'12px'}}>
+    <Container id='messagediv' >
       <Row >
-        <Col sm={1}><Button size='sm' onClick={onHide}>Back</Button></Col>
-        <Col sm={1}><Button size='sm' onClick={onForwordHandler} style={{fontSize:'20px',color:'black',backgroundColor:'white',border:'none'}}>⪼</Button></Col>
-        <Col sm={1} ><Button size='sm' onClick={onDeleteHandler}>Delete</Button></Col>
+        <Col ><Button size='sm' onClick={onHide}>Back</Button></Col>
+        <Col sm={1}><Button size='sm' onClick={onForwordHandler} id='Forwordbtn'>⪼</Button></Col>
+        <Col sm={2} ><Button size='sm' onClick={onDeleteHandler}>Delete</Button></Col>
       </Row>
       <Row>
-        <Col style={{fontSize:'20px',fontWeight:'bold',textAlign:'justify'}}>To:{props.email}</Col>
+        <Col id='Toemail'>To:{props.email}</Col>
       </Row>
       <Row>
-        <Col className='p-3' sm={12}><b>message:&nbsp; &nbsp;</b>{props.message}</Col>
+        <Col   id='message'><b>message:&nbsp; &nbsp;</b>{props.message}</Col>
       </Row>
     </Container>
     {ShowForword && <ForwordMail onHide={onForwordHide} message={props.message}/>}

@@ -41,7 +41,7 @@ const Inbox = () => {
                     }
                     else{throw new Error('Something went wrong')} 
                 } catch (error) {
-                    alert(error)
+                    alert(error.message)
                 }
             } 
             GetData()      

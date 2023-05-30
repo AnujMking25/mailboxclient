@@ -41,7 +41,7 @@ const ItemsList = (props) => {
       {!show && <Row onClick={onShowMessagePage} >
         <Col sm={1}>{read ? '📩': '✔'}</Col>
           <Col style={{fontWeight:"bold"}}>{props.from}</Col>
-          <Col sm={8}>{props.message}</Col>
+          <Col sm={8} style={{height:'1.5rem',overflowY:'hidden'}}>{props.message}</Col>
           
         </Row>}
         {show && <MessagePage  onHide={onHideMessagePage} onDeleteMail={props.onDeleteMail} id={props.id} url={url} email={props.from} message={props.message}/>}
