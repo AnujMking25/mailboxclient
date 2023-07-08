@@ -8,7 +8,7 @@ const SendEmail = () => {
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','');
     const [IsSendItem,setSendItem]=useState();
     const ShowitemData=useSelector(state=>state.mailboxitem.SendboxItems)
-    const url=`https://mail-box-94e45-default-rtdb.firebaseio.com/${itsYouremail}/send`
+    const url=`https://mail-box-8c31a-default-rtdb.firebaseio.com/${itsYouremail}/send`
 
     function onDeleteSendBoxMail(id){
         dispatch(MailItemsSliceAction.deleteSendBoxmail(id))

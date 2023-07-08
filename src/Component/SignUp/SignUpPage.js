@@ -41,9 +41,9 @@ const SignUpPage = () => {
     
       let url;   
       if(isLoggedIn){
-        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8'
+        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyATy68K7K1PknrbG44ePxzWg4LyUlR1TzU'
       }else{
-        url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAwCFu5dJJylVdcHESllDZOFgMkVQ3jHW8";
+        url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyATy68K7K1PknrbG44ePxzWg4LyUlR1TzU";
       }
         try {
         const signOrLogin = await fetch(url, {

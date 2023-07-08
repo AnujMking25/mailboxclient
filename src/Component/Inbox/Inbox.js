@@ -8,7 +8,7 @@ const Inbox = () => {
     const inboxitemsData=useSelector(state=>state.mailboxitem.inboxItems)
     const itsYouremail=localStorage.getItem('email').replace('@','').replace('.','')
     const[inboxMailItem,setinboxMailitem]=useState('')
-    const url=`https://mail-box-94e45-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
+    const url=`https://mail-box-8c31a-default-rtdb.firebaseio.com/${itsYouremail}/inbox`
     function onDeleteInboxMail(id){
         dispatch(MailItemsSliceAction.deleteinboxmail(id))
     }
